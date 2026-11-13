@@ -1,7 +1,7 @@
 {
-  "version": "1.0.1",
-  "notes": "Nowe menu Draft Live Game i Draft vs AI, automatyczne wyniki rund w Fearless BO5 oraz usunięcie Poppy z wyboru i rekomendacji na jungle.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.1/Draft-Master.exe",
-  "sha256": "6bbb22489d75ec84d83cd2fa8f550341f470292bc9f184ad70932a37142da626",
-  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.1/Draft-Master-1.0.1.html"
+  "version": "1.0.2",
+  "notes": "Parowanie klas, plan gry pod win condition i zmiany punktacji frontu, engage’u, strongside topa, asasynów i zatrzymania resetów.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.2/Draft-Master.exe",
+  "sha256": "041e1a812b538b28dec94d2f172df66d892b887b7d40fd835a542a6054682692",
+  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.2/Draft-Master-1.0.2.html"
 }

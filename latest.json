@@ -1,7 +1,7 @@
 {
-  "version": "1.0.4",
-  "notes": "Bonus otwarcia +3 na midzie i w jungle dla dwóch postaci z największą liczbą synergii i jednej z największą liczbą synergii +8 spośród pozostałych.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.4/Draft-Master.exe",
-  "sha256": "03407bf30a9d787b0bd4f77aea63f0c55caad5487c6e06ed358d62607e416e10",
-  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.4/Draft-Master-1.0.4.html"
+  "version": "1.0.5",
+  "notes": "Synchronizacja banów i filtrowanie synergii, ścieżki jungli, bonusy otwarcia i aktualizacja tierów.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.5/Draft-Master.exe",
+  "sha256": "2570dd3136d105f03a96cc5931f2bd7f8740d175e6e5c3e01b9e0a16c18cc288",
+  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.5/Draft-Master-1.0.5.html"
 }

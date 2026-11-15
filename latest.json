@@ -1,7 +1,7 @@
 {
-  "version": "1.0.5",
-  "notes": "Synchronizacja banów i filtrowanie synergii, ścieżki jungli, bonusy otwarcia i aktualizacja tierów.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.5/Draft-Master.exe",
-  "sha256": "2570dd3136d105f03a96cc5931f2bd7f8740d175e6e5c3e01b9e0a16c18cc288",
-  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.5/Draft-Master-1.0.5.html"
+  "version": "1.0.6",
+  "notes": "Pełna tabela Master+, Draven 120% WR, pozostałe linie GD@15 + 60% WR i ścieżka do carry.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.6/Draft-Master.exe",
+  "sha256": "e6cd5532df5788a4120841e2eae90c4aa2c61ee5220754ceb2527fb45e6e3367",
+  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.6/Draft-Master-1.0.6.html"
 }

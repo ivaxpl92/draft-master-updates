@@ -1,7 +1,7 @@
 {
   "version": "1.0.7",
-  "notes": "Gragas: engage. Singed top: +2 za proxy, gdy przeciwny jungler wyraźnie kończy pierwszy clear w kierunku bota. Uzupełnione etykiety parowań i podpowiedź flexa Gragas–Yasuo.",
-  "windows_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.7/Draft-Master.exe",
-  "sha256": "b94223e1a554f3c64430fe0cccaf327028060d77fb7bdd1ea64e753b5c77327b",
-  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.7/Draft-Master-1.0.7.html"
+  "notes": "Poprawka etykiet: Renata i Taric, nagła przewaga liczebna, splitpush i kulka Orianny. Wszystkie 266 profili ma co najmniej dwie widoczne etykiety.",
+  "windows_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.7-r2/Draft-Master.exe",
+  "sha256": "ed5bfeaa815bdcd569564e09f9dcbea41b2e7e4812f7a5b4f8ad96e11ef8a16c",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.7-r2/Draft-Master-1.0.7.html"
 }

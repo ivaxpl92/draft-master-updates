@@ -1,7 +1,7 @@
 {
-  "version": "1.0.6",
-  "notes": "Pełna tabela Master+, Draven 120% WR, pozostałe linie GD@15 + 60% WR i ścieżka do carry.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.6/Draft-Master.exe",
-  "sha256": "e6cd5532df5788a4120841e2eae90c4aa2c61ee5220754ceb2527fb45e6e3367",
-  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.6/Draft-Master-1.0.6.html"
+  "version": "1.0.7",
+  "notes": "Gragas: engage. Singed top: +2 za proxy, gdy przeciwny jungler wyraźnie kończy pierwszy clear w kierunku bota. Uzupełnione etykiety parowań i podpowiedź flexa Gragas–Yasuo.",
+  "windows_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.7/Draft-Master.exe",
+  "sha256": "b94223e1a554f3c64430fe0cccaf327028060d77fb7bdd1ea64e753b5c77327b",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.7/Draft-Master-1.0.7.html"
 }

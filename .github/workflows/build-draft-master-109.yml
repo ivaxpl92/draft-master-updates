@@ -1,0 +1,35 @@
+name: Build Draft Master 1.0.9
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/build-draft-master-109.yml]
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.4'
+          cache: false
+      - name: Build and publish the Windows release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          site=https://draft-master-ivax.piledminnow2.chatgpt.site
+          curl -fsSL --retry 3 "$site/releases/1.0.8/Draft-Master-1.0.8-Windows.zip" -o previous.zip
+          unzip -q previous.zip
+          curl -fsSL --retry 3 "$site/releases/1.0.9/Draft-Master-1.0.9.html" -o Zrodla/app.html
+          echo 'b61cc986be96e4ea89429490a0e312541751c92fff4ff60cdd0b2f69d958b73e  Zrodla/app.html' | sha256sum -c -
+          sed -i 's/const appVersion = "1.0.8"/const appVersion = "1.0.9"/' Zrodla/update.go
+          grep -Fx 'const appVersion = "1.0.9"' Zrodla/update.go
+          cd Zrodla
+          go test ./...
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-H windowsgui -s -w" -o ../Draft-Master.exe .
+          cd ..
+          file Draft-Master.exe | grep -E 'PE32\+.*x86-64'
+          sha256sum Draft-Master.exe
+          gh release create v1.0.9 Draft-Master.exe --target "$GITHUB_SHA" --title 'Draft Master 1.0.9' --notes 'Parowanie priorytetu linii z junglą, korekta blinda, nowe duety i globalna czołówka picków.'

@@ -1,7 +1,7 @@
 {
-  "version": "1.0.8",
-  "notes": "Plan po pierwszym picku, wczesny dive i snowball, elastyczne ścieżki junglerów, Yasuo top 25 oraz poprawki ocen frontu, CC, splitpushu i parowań.",
-  "windows_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.8/Draft-Master.exe",
-  "sha256": "dafa407783541a227a117d4e7bf77c3dab17cf2ecd01b2473224391ed5ffe24e",
-  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.8/Draft-Master-1.0.8.html"
+  "version": "1.0.9",
+  "notes": "Priorytet linii dla jungli, nowe duety, korekta blinda oraz globalne rekomendacje.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.9/Draft-Master.exe",
+  "sha256": "5fac26d07c3abaf9db3310c6ae134e000c28c929b895e0157b8941d767d283a4",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.9/Draft-Master-1.0.9.html"
 }

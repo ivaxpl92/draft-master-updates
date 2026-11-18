@@ -1,0 +1,43 @@
+name: Build Draft Master 1.0.12
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/build-draft-master-112.yml]
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.24.4'
+          cache: false
+      - name: Build and publish the Windows release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          site=https://draft-master-ivax.piledminnow2.chatgpt.site
+          curl -fsSL --retry 3 "$site/releases/1.0.8/Draft-Master-1.0.8-Windows.zip" -o previous.zip
+          unzip -q previous.zip
+          curl -fsSL --retry 3 "$site/releases/1.0.12/Draft-Master-1.0.12.html.gz" -o app.html.gz
+          gzip -dc app.html.gz > Zrodla/app.html
+          echo '737d0b6d00580fa8448bc83f7a028fb236085baacfc0e749fa9c92fe3bcc8943  Zrodla/app.html' | sha256sum -c -
+          sed -i 's/const appVersion = "1.0.8"/const appVersion = "1.0.12"/' Zrodla/update.go
+          grep -Fx 'const appVersion = "1.0.12"' Zrodla/update.go
+          cd Zrodla
+          sed -i 's/"1.0.8", "1.0.1-beta"/"1.0.8", "1.0.9", "1.0.10", "1.0.11", "1.0.12", "1.0.1-beta"/; s/\[\]string{"1.0.9", "1.1"/[]string{"1.0.13", "1.1"/' update_test.go
+          go test ./...
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-H windowsgui -s -w" -o ../Draft-Master.exe .
+          cd ..
+          file Draft-Master.exe | grep -E 'PE32\+.*x86-64'
+          sha256sum Draft-Master.exe
+          gh release create v1.0.12 Draft-Master.exe --target "$GITHUB_SHA" --title 'Draft Master 1.0.12' --notes 'Nowa punktacja uniwersalności blind picków na wszystkich pozycjach.'
+          mkdir download-check
+          gh release download v1.0.12 -p Draft-Master.exe -D download-check
+          cmp Draft-Master.exe download-check/Draft-Master.exe
+          digest=$(sha256sum Draft-Master.exe | cut -d' ' -f1)
+          jq -n --arg digest "$digest" --arg html "$site/releases/1.0.12/Draft-Master-1.0.12.html" --arg exe "https://github.com/$GH_REPO/releases/download/v1.0.12/Draft-Master.exe" '{version:"1.0.12",notes:"Nowa punktacja uniwersalności blind picków na wszystkich pozycjach.",windows_url:$exe,sha256:$digest,html_url:$html}' > release-feed.json
+          gh api -X PUT "repos/$GH_REPO/contents/latest.json" -f message='Publish Draft Master 1.0.12 update feed' -f sha=ab0384975ad361aa775439a8d3f28b7fea2aa586 -f content="$(base64 -w0 release-feed.json)" --jq .commit.sha

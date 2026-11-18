@@ -28,6 +28,7 @@ jobs:
           sed -i 's/const appVersion = "1.0.8"/const appVersion = "1.0.9"/' Zrodla/update.go
           grep -Fx 'const appVersion = "1.0.9"' Zrodla/update.go
           cd Zrodla
+          sed -i 's/"1.0.8", "1.0.1-beta"/"1.0.8", "1.0.9", "1.0.1-beta"/; s/\[\]string{"1.0.9", "1.1"/[]string{"1.0.10", "1.1"/' update_test.go
           go test ./...
           CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-H windowsgui -s -w" -o ../Draft-Master.exe .
           cd ..

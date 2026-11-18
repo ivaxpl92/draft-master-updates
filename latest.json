@@ -1,7 +1,7 @@
 {
-  "version": "1.0.9",
-  "notes": "Priorytet linii dla jungli, nowe duety, korekta blinda oraz globalne rekomendacje.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.9/Draft-Master.exe",
-  "sha256": "5fac26d07c3abaf9db3310c6ae134e000c28c929b895e0157b8941d767d283a4",
-  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.9/Draft-Master-1.0.9.html"
+  "version": "1.0.10",
+  "notes": "Kruche cele, ochrona przed pierwszą eliminacją, counterengage Rakana i tarcza Sivir przeciw engage’owi.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.10/Draft-Master.exe",
+  "sha256": "5d19442ba6aa6ebb14a99d50c291cdb8c46dd86e363a443511295f08b9aac6d1",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.10/Draft-Master-1.0.10.html"
 }

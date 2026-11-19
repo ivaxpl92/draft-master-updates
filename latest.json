@@ -1,7 +1,7 @@
 {
-  "version": "1.0.14",
-  "notes": "Poprawka błędu localStorage i uruchamiania aplikacji Windows.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.14/Draft-Master.exe",
-  "sha256": "e13cda4a7a2478f270562921ea1237bb4526294851b3a603d4d488908976fb4c",
-  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.14/Draft-Master-1.0.14.html"
+  "version": "1.0.15",
+  "notes": "Poprawki profili i parowań; odświeżone kontry Master+ 16.22.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.15/Draft-Master.exe",
+  "sha256": "906501b09eb370e74ae029f1c865b95fc6e2cafa321e80ceba6208556d7ee75e",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.15/Draft-Master-1.0.15.html"
 }

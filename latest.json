@@ -1,7 +1,7 @@
 {
-  "version": "1.0.15",
-  "notes": "Poprawki profili i parowań; odświeżone kontry Master+ 16.22.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.15/Draft-Master.exe",
-  "sha256": "906501b09eb370e74ae029f1c865b95fc6e2cafa321e80ceba6208556d7ee75e",
-  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.15/Draft-Master-1.0.15.html"
+  "version": "1.0.16",
+  "notes": "Poprawki audytu postaci, parowań i hierarchii carry.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.16/Draft-Master.exe",
+  "sha256": "6322dab0543af8f76a192dd8d3aa577d2a1cbbf4bfaf081206e9cd0b12154246",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.16/Draft-Master-1.0.16.html"
 }

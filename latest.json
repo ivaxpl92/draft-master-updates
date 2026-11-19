@@ -1,7 +1,7 @@
 {
-  "version": "1.0.16",
-  "notes": "Poprawki audytu postaci, parowań i hierarchii carry.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.16/Draft-Master.exe",
-  "sha256": "6322dab0543af8f76a192dd8d3aa577d2a1cbbf4bfaf081206e9cd0b12154246",
-  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.16/Draft-Master-1.0.16.html"
+  "version": "1.0.17",
+  "notes": "Plan ratunkowy po przegranej linii -6 i poprawiony licznik partnerów carry.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.0.17/Draft-Master.exe",
+  "sha256": "de27629d53ff89c05e4f2c0626a92460ac519b9ef95791d8a5601abb1dc7bf62",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/releases/1.0.17/Draft-Master-1.0.17.html"
 }

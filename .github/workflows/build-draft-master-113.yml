@@ -1,0 +1,39 @@
+name: Build Draft Master 1.0.13
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/build-draft-master-113.yml]
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.24.4'
+          cache: false
+      - name: Verify, build and publish Windows
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          site=https://draft-master-ivax.piledminnow2.chatgpt.site
+          curl -fsSL --retry 3 "$site/releases/1.0.13/Draft-Master-1.0.13-source.zip" -o source.zip
+          echo '96ca1eb0e8c388f1d8cbac46a84dafc654bf3b2605388fa7f3ac6ac1ec189de5  source.zip' | sha256sum -c -
+          unzip -q source.zip
+          cd Zrodla
+          go test ./...
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-H windowsgui -s -w" -o ../Draft-Master.exe .
+          cd ..
+          file Draft-Master.exe | grep -E 'PE32\+.*x86-64'
+          zip -q -r Draft-Master-1.0.13-Windows.zip Draft-Master.exe Zrodla Licencje START.txt AKTUALIZACJE.txt
+          gh release create v1.0.13 Draft-Master.exe Draft-Master-1.0.13-Windows.zip source.zip --target "$GITHUB_SHA" --title 'Draft Master 1.0.13' --notes 'Pełny audyt etykiet i parowań, warianty Kayna, poprawki ochrony carry, dive i aktualizacji. Tiery oraz dane matchupów pozostają z poprzedniego patcha do 1.1.0.'
+          mkdir verify-download
+          gh release download v1.0.13 -p Draft-Master.exe -D verify-download
+          cmp Draft-Master.exe verify-download/Draft-Master.exe
+          digest=$(sha256sum Draft-Master.exe | cut -d' ' -f1)
+          jq -n --arg digest "$digest" --arg html "$site/releases/1.0.13/Draft-Master-1.0.13.html" --arg exe "https://github.com/$GH_REPO/releases/download/v1.0.13/Draft-Master.exe" '{version:"1.0.13",notes:"Audyt wszystkich postaci, nowe parowania i poprawiony dostęp do aktualizacji.",windows_url:$exe,sha256:$digest,html_url:$html}' > release-feed.json
+          feedsha=$(gh api "repos/$GH_REPO/contents/latest.json" --jq .sha)
+          gh api -X PUT "repos/$GH_REPO/contents/latest.json" -f message='Publish Draft Master 1.0.13 update feed' -f sha="$feedsha" -f content="$(base64 -w0 release-feed.json)" --jq .commit.sha

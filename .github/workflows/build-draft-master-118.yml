@@ -1,0 +1,39 @@
+name: Build Draft Master 1.0.18
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/build-draft-master-118.yml]
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.24.4'
+          cache: false
+      - name: Verify, build and publish Windows
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          site=https://draft-master-ivax.piledminnow2.chatgpt.site
+          curl -fsSL --retry 3 "$site/releases/1.0.18/Draft-Master-1.0.18-source.zip" -o source.zip
+          echo '329e3f6831fdb98afb12a27e4b5acd5471955405c797cc9cde5c382f98b9d276  source.zip' | sha256sum -c -
+          unzip -q source.zip
+          cd Zrodla
+          go test ./...
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="-H windowsgui -s -w" -o ../Draft-Master.exe .
+          cd ..
+          file Draft-Master.exe | grep -E 'PE32\+.*x86-64'
+          zip -q -r Draft-Master-1.0.18-Windows.zip Draft-Master.exe Zrodla Licencje START.txt AKTUALIZACJE.txt
+          gh release create v1.0.18 Draft-Master.exe Draft-Master-1.0.18-Windows.zip source.zip --target "$GITHUB_SHA" --title 'Draft Master 1.0.18' --notes 'Nowe parowania: +1 za każdy powód i premia 0/3/5/8 osobno za partnera. Ręczna korekta puli ról i flexów z zachowaniem ostatniej roli. Kontry, tiery i CP bez zmian.'
+          mkdir verify-download
+          gh release download v1.0.18 -p Draft-Master.exe -D verify-download
+          cmp Draft-Master.exe verify-download/Draft-Master.exe
+          digest=$(sha256sum Draft-Master.exe | cut -d' ' -f1)
+          jq -n --arg digest "$digest" --arg html "$site/releases/1.0.18/Draft-Master-1.0.18.html" --arg exe "https://github.com/$GH_REPO/releases/download/v1.0.18/Draft-Master.exe" '{version:"1.0.18",notes:"Nowe naliczanie parowań i poprawiona pula ról oraz flexów.",windows_url:$exe,sha256:$digest,html_url:$html}' > release-feed.json
+          feedsha=$(gh api "repos/$GH_REPO/contents/latest.json" --jq .sha)
+          gh api -X PUT "repos/$GH_REPO/contents/latest.json" -f message='Publish Draft Master 1.0.18 update feed' -f sha="$feedsha" -f content="$(base64 -w0 release-feed.json)" --jq .commit.sha

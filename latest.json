@@ -1,7 +1,7 @@
 {
-  "version": "1.1.2",
-  "notes": "Działające trasy junglera, weak side i strong side, pokrycie planu w rankingu oraz poprawki synergii i kart postaci.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.2/Draft-Master.exe",
-  "sha256": "cd6ced97c61efc73ea3e8cfa8d43195b3df466a0ca1b8138279e5b3210601065",
-  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.2/Draft-Master-1.1.2.html"
+  "version": "1.1.3",
+  "notes": "Kontry OP.GG od mainów ±12 z patchów 16.22 i 16.23. Punkty za złoto, PD, win rate starcia i ogólny win rate. Korekty dla Dravena i Nilah.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.3/Draft-Master.exe",
+  "sha256": "880348abec52e20bfd7102f4e166a85494f690beaa4c72c59b8705144532f08c",
+  "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/"
 }

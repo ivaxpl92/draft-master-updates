@@ -1,7 +1,7 @@
 {
-  "version": "1.1.1",
-  "notes": "Poprawiono ranking ADC przy przewadze obrażeń AP, zagrożenie hookiem dla Branda i spójność planu działania z rankingiem.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.1/Draft-Master.exe",
-  "sha256": "55f9a6c2d02da49e1af962ad8438339cd15e6c2c42c4b35b1622bd781763e065",
-  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.1/Draft-Master-1.1.1.html"
+  "version": "1.1.2",
+  "notes": "Działające trasy junglera, weak side i strong side, pokrycie planu w rankingu oraz poprawki synergii i kart postaci.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.2/Draft-Master.exe",
+  "sha256": "cd6ced97c61efc73ea3e8cfa8d43195b3df466a0ca1b8138279e5b3210601065",
+  "html_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.2/Draft-Master-1.1.2.html"
 }

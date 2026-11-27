@@ -1,0 +1,80 @@
+name: Publish Draft Master 1.1.2
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/build-draft-master-1102.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: draft-master-release-1.1.2
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      PAYLOAD_BLOB: 7bb7648dff84b6cce883c60335030dbdd992492b
+      VERSION: 1.1.2
+      PREVIOUS_VERSION: 1.1.1
+      EXE_SHA256: cd6ced97c61efc73ea3e8cfa8d43195b3df466a0ca1b8138279e5b3210601065
+      ZIP_SHA256: 18f13bff95f2a14304d4fcba90920d46ef96a61b2c018b5862410c1f4fb7fe60
+      HTML_SHA256: 6978c59c85d59b46ad8da6f525484becb161048a029c347eac6875b7fcead63f
+      NOTES: Działające trasy junglera, weak side i strong side, pokrycie planu w rankingu oraz poprawki synergii i kart postaci.
+    steps:
+      - name: Retrieve and verify the Windows package
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="Draft-Master-$VERSION-Windows.zip"
+          html="Draft-Master-$VERSION.html"
+          gh api "repos/$GH_REPO/git/blobs/$PAYLOAD_BLOB" --jq .content | base64 -d > "$archive"
+          echo "$ZIP_SHA256  $archive" | sha256sum -c -
+          unzip -p "$archive" Draft-Master.exe > Draft-Master.exe
+          unzip -p "$archive" Zrodla/app.html > "$html"
+          echo "$EXE_SHA256  Draft-Master.exe" | sha256sum -c -
+          echo "$HTML_SHA256  $html" | sha256sum -c -
+          file Draft-Master.exe | grep -E 'PE32\+.*x86-64'
+
+      - name: Publish and verify release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="v$VERSION"
+          archive="Draft-Master-$VERSION-Windows.zip"
+          html="Draft-Master-$VERSION.html"
+          feed_version=$(gh api "repos/$GH_REPO/contents/latest.json" --jq .content | base64 -d | jq -er .version)
+          if [[ "$feed_version" != "$PREVIOUS_VERSION" && "$feed_version" != "$VERSION" ]]; then
+            echo "Unexpected current feed version $feed_version"
+            exit 1
+          fi
+
+          if ! gh release view "$tag" --json tagName > /dev/null 2>&1; then
+            gh release create "$tag" Draft-Master.exe "$archive" "$html" --latest --target "$GITHUB_SHA" --title "Draft Master $VERSION" --notes "$NOTES"
+          fi
+
+          base_url="https://github.com/$GH_REPO/releases/download/$tag"
+          for asset in Draft-Master.exe "$archive" "$html"; do
+            curl -fsSL --retry 5 --retry-all-errors --connect-timeout 10 --max-time 90 "$base_url/$asset" -o "downloaded-$asset"
+            cmp "$asset" "downloaded-$asset"
+          done
+
+      - name: Update the installed app's release feed
+        shell: bash
+        run: |
+          set -euo pipefail
+          base_url="https://github.com/$GH_REPO/releases/download/v$VERSION"
+          jq -n --arg version "$VERSION" --arg notes "$NOTES" --arg exe "$base_url/Draft-Master.exe" --arg digest "$EXE_SHA256" --arg html "$base_url/Draft-Master-$VERSION.html" '{version:$version,notes:$notes,windows_url:$exe,sha256:$digest,html_url:$html}' > release-feed.json
+          gh api "repos/$GH_REPO/contents/latest.json" > current-feed.json
+          jq -er .content current-feed.json | base64 -d > installed-feed.json
+          if cmp -s installed-feed.json release-feed.json; then
+            exit 0
+          fi
+          test "$(jq -er .version installed-feed.json)" = "$PREVIOUS_VERSION"
+          feed_sha=$(jq -er .sha current-feed.json)
+          gh api -X PUT "repos/$GH_REPO/contents/latest.json" -f message="Publish Draft Master $VERSION update feed" -f sha="$feed_sha" -f content="$(base64 -w0 release-feed.json)" --jq .commit.sha

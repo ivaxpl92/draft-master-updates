@@ -1,7 +1,7 @@
 {
-  "version": "1.1.3",
-  "notes": "Kontry OP.GG od mainów ±12 z patchów 16.22 i 16.23. Punkty za złoto, PD, win rate starcia i ogólny win rate. Korekty dla Dravena i Nilah.",
-  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.3/Draft-Master.exe",
-  "sha256": "880348abec52e20bfd7102f4e166a85494f690beaa4c72c59b8705144532f08c",
+  "version": "1.1.4",
+  "notes": "Tryb Live uwzględnia wskazania sojuszników, automatycznie przypisuje pozycje rywali i zachowuje plan po rozpoczęciu gry. Nowe małe okno planu na Windows.",
+  "windows_url": "https://github.com/ivaxpl92/draft-master-updates/releases/download/v1.1.4/Draft-Master.exe",
+  "sha256": "a7cd3f56e91b16444b03435fc4d2f0d86460da4715ad047f25d9fe683b139209",
   "html_url": "https://draft-master-ivax.piledminnow2.chatgpt.site/"
 }
